@@ -1,5 +1,4 @@
 function Pipe() {    
-    this.w = 40;
     this.xup = w;
     this.yup = 0;
     this.h = floor(random(50, h - 150));
@@ -7,13 +6,16 @@ function Pipe() {
     this.ydow = this.h + hole;
 
     this.update = function () {
-        this.xup -= 2;
-        this.xdow -= 2;
+        this.xup -= 2 + (score/20);
+        this.xdow -= 2 + (score/20);
+
+        if (score%20 == 1) frame += 10;
     };
 
     this.show = function() {
-        rect(this.xup, this.yup, this.w, this.h);
-        rect(this.xdow, this.ydow, this.w, h - this.ydow);
+        fill(255)
+        rect(this.xup, this.yup, holex, this.h);
+        rect(this.xdow, this.ydow, holex, h - this.ydow);
 
     };
 };
