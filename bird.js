@@ -7,7 +7,7 @@ function Bird() {
     this.y = 70;
     this.v = 0;
     this.a = 0.4;
-    this.size = 15;
+    this.size = 13;
 
     this.update = function() {
         this.v += this.a;
@@ -47,7 +47,7 @@ function Bird() {
 
     this.flap = function() {
         if (keyIsPressed === true) {
-            this.v = -8;
+            this.v = -7;
             keyIsPressed = false;
         };
     };
@@ -56,8 +56,9 @@ function Bird() {
         fill(244, 5, 37)
         ellipse(this.x, this.y, this.size*2, this.size*2);
         fill(63, 76, 214);
-        text(score, w - 100, 50);
-        text(2 + (score/10), w - 100, 150);
+        text('score: '+ score, 30, 30);
+        text('level: ' + (speed-1), 30, 70);
+        // text(speed-1, 100, 70);
     };
 
     this.overcome = function() {

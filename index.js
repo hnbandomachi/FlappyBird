@@ -1,11 +1,11 @@
-var bird, bg, score = 0, frame = 100;
+var bird, bg, score = 0, frame = 100, speed = 2;
 var pipes = [], check = true;
-const w = 600, h = 600, hole = 200, holex = 40;
+const w = 600, h = 600, hole = 75, holex = 40;
 
 
 function setup() { 
     createCanvas(w, h);
-    textSize(50);
+    textSize(25);
     bg = new Background();
     bird = new Bird();
     pipes.push(new Pipe());
@@ -13,10 +13,6 @@ function setup() {
 
 function draw() {
     background(0, 0, 0);    
-    bird.flap();
-    bird.update();    
-    bird.show();
-    if (bird.dead(pipes)) reset();
 
     if (frameCount < 400) {
         if (frameCount%100 == 0) {
@@ -35,6 +31,11 @@ function draw() {
         };
         pipes[i].show();
     };
+
+    bird.flap();
+    bird.update();    
+    bird.show();
+    if (bird.dead(pipes)) reset();
     
 };
 
