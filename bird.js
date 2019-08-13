@@ -11,7 +11,12 @@ function Bird() {
 
     this.update = function() {
         this.v += this.a;
-        this.y += this.v;                
+        this.y += this.v;
+
+        if (this.overcome()) {
+            score++;
+        };
+
     };
 
     this.dead = function(pipes) {
@@ -31,7 +36,7 @@ function Bird() {
                     let h2 = hole - h1;
                     if (h1 < this.size || h2 < this.size) {
                         return true;
-                    }
+                    };
                 };
 
             };
@@ -52,11 +57,13 @@ function Bird() {
         ellipse(this.x, this.y, this.size*2, this.size*2);
         fill(63, 76, 214);
         text(score, w - 100, 50);
+        text(2 + (score/10), w - 100, 150);
     };
 
     this.overcome = function() {
-        if (pipes[score].xup <= holex - this.size/2) {
+        if (pipes[0].xup <= this.x - holex - this.size/2 && check) {
+            check = false;
             return true;
-        }
+        };
     };
 };

@@ -1,15 +1,15 @@
 function Pipe() {    
+    this.speed = 2;
     this.xup = w;
     this.yup = 0;
-    this.h = floor(random(50, h - 150));
+    this.h = floor(random(0.25*h, 0.65*h));
     this.xdow = w;
     this.ydow = this.h + hole;
 
     this.update = function() {
-        this.xup -= 2 + (score/20);
-        this.xdow -= 2 + (score/20);
-
-        if (score%20 == 1) frame += 10;
+        this.xup -= this.speed;
+        this.xdow -= this.speed;       
+        
     };
 
     this.show = function() {
@@ -21,7 +21,7 @@ function Pipe() {
 
     this.overBackground = function() {
         if (this.xup < -holex) {
-            console.log(pipes)
+            check = true;
             return true;
         } ;
     };
