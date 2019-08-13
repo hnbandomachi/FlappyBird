@@ -1,4 +1,5 @@
-var bird, bg, pipes = [], score = 0, frame = 100;
+var bird, bg, score = 0, frame = 100;
+var pipes = [];
 const w = 600, h = 600, hole = 150, holex = 40;
 
 
@@ -12,30 +13,33 @@ function setup() {
 
 function draw() {
     background(0, 0, 0);    
-    if (frameCount < 300) {
-        if (frameCount % 150 == 0) pipes.push(new Pipe());
-    };
     bird.flap();
-    bird.update();
-
-    
-    
+    bird.update();    
     bird.show();
-    if (bird.dead(pipes)) reset();       
-    bird.show(); 
+    if (bird.dead(pipes)) reset();
+
+    if (frameCount < 400) {
+        if (frameCount%100 == 0) {
+            pipes.push(new Pipe());
+        };                
+    }
+    else {
+        if (pipes[0].xup == -holex) {
+            pipes.push(new Pipe());
+        };
+    };
+
+
     for (let i = 0; i < pipes.length; i++) {
         pipes[i].update();
+        if (pipes[i].overBackground()) pipes.splice(0, 1);
         pipes[i].show();
     };
-
-    if (bird.overcome() && frameCount > 300) {        
-        score++;
-        pipes.push(new Pipe());
-    };
+    
 };
 
 function reset() {
-    frameRate(0)
-    // bird = new Bird();
-    // pipes = [];    
+    // bird.x = 70; bird.y = 70; bird.v = 0;
+    // pipes = [];
+    // pipes.push(new Pipe());
 };

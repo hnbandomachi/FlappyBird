@@ -5,7 +5,7 @@ function Pipe() {
     this.xdow = w;
     this.ydow = this.h + hole;
 
-    this.update = function () {
+    this.update = function() {
         this.xup -= 2 + (score/20);
         this.xdow -= 2 + (score/20);
 
@@ -17,5 +17,12 @@ function Pipe() {
         rect(this.xup, this.yup, holex, this.h);
         rect(this.xdow, this.ydow, holex, h - this.ydow);
 
+    };
+
+    this.overBackground = function() {
+        if (this.xup < -holex) {
+            console.log(pipes)
+            return true;
+        } ;
     };
 };
